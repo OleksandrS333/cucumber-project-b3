@@ -1,4 +1,4 @@
-package io.loop.step_defenitions;
+package io.loop.step_definitions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -9,9 +9,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
-
-
-
 
     @Before
     public void setUp(Scenario scenario){
@@ -26,6 +23,12 @@ public class Hooks {
             final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
-        // Driver.closeDriver();
+        Driver.closeDriver();
+    }
+
+    // @AfterStep
+    public void screenShot(Scenario scenario){
+        final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot, "image/png", scenario.getName());
     }
 }
